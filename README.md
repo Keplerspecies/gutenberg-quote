@@ -11,7 +11,7 @@ to further filter the data.
 
 To use (assuming you have a corpus), fill secrets.py with the necessary OAuth tokens, and run the quoteBot script. 
 It is also recommended that variable MAX_BOOKS (found in getBook()) be updated to the 
-[current amount of Gutenberg texts](http://www.gutenberg.org/dirs/GUTINDEX.ALL.iso-8859-1.txt)
+[current amount of Gutenberg texts](http://www.gutenberg.org/dirs/GUTINDEX.ALL.iso-8859-1.txt).
 
 Uses [nltk](https://github.com/nltk/nltk/), [tweepy](http://tweepy.readthedocs.org/en/v3.2.0/), and 
 [beautiful soup](http://www.crummy.com/software/BeautifulSoup/bs4/doc/).
