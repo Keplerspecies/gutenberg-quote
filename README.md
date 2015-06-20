@@ -1,4 +1,4 @@
-# gutenberg-quote
+# Gutenberg Quote
 A twitter bot for posting quotes from Project Gutenberg texts.
 
 View at https://twitter.com/gutenbergquote
