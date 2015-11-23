@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[2]:
-
 import xml.etree.ElementTree as ET, re, json, sys, csv
 from nltk.corpus import stopwords
 
@@ -53,16 +48,13 @@ def grabQuote(text):
     text = text.split('\n')
     if(isEnglish(text[0])):
         return dewiki(text[0])
-    #print "TEXT" + text[0]
     try:
         return dewiki(text[1])
     #No translation available? Assume it's underneath anyway
     except IndexError:
-        #print "HORRIBLE ERROR!"
         return dewiki(text[0])
 
 def grabQuotes(text):
-    #improve this regex
     text = text.split("\n* ")
     #don't care about opening lines, just looking for quotes
     text.pop(0)
@@ -78,23 +70,14 @@ def grabQuotes(text):
         
 
 iter = ET.iterparse(FILE_NAME)
-#root = tree.getroot()
-
-
-# In[3]:
-
 
 contTag = False
 quoteObj = {}
 Author = ""
 for event, elem in iter:
-    #print elem.tag, elem.attrib
     i+=1
     if(i%100000 == 0):
         print i
-    #if(i==100):
-    #    break
-    #print i
     if "page" in elem.tag:
         for page in elem:
             #avoid administrative pages
@@ -125,17 +108,13 @@ for event, elem in iter:
 if bool(quoteObj):
     with open("quotes.json", 'ab') as out:
         json.dump({"Authors": quoteObj}, out, sort_keys=True, indent=4, separators=(',', ':'))
-                            
 
-
-# In[34]:
-
-#can be called on output file give a CSV file of names to reduce dataset
+#can be called on output file give a CSV file of names to reduce initial parsing
 def reduceJSON(jsonName, csvName, outName)
-    quoteObj = json.load(open("quotes.json", 'rb'))
+    quoteObj = json.load(open(jsonName, 'rb'))
     authors = {}
     #print quoteObj["Authors"].keys()
-    with open("wikiauthors.csv", 'rb') as authList:
+    with open(csvName, 'rb') as authList:
         authListReader = csv.reader(authList)
         authListReader.next()
         for author in authListReader:
@@ -144,6 +123,5 @@ def reduceJSON(jsonName, csvName, outName)
                     i+=1
                 authors[author[0]] = quoteObj["Authors"][author[0].decode('utf')]
 
-    with open("authorQuotes.json", 'wb') as out:
+    with open(outName, 'wb') as out:
         json.dump({"Authors" : authors}, out, sort_keys=True, indent=4, separators=(',', ':'))
-
