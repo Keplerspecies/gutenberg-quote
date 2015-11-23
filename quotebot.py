@@ -147,7 +147,7 @@ def getQuote(core, lang, KN):
         quoteProbs.append(quoteProb(core[i], KN))
         if i % 250 == 0:
             print i
-    DEVIATION_FROM_BEST = 1
+    DEVIATION_FROM_BEST = .5
     core = zip(core, quoteProbs)
     core = sorted(core, key = lambda core:core[1], reverse=True)
     bestQuotes = []
