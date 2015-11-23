@@ -155,7 +155,7 @@ def getQuote(core, lang, KN):
         if i[1] > core[0][1] - DEVIATION_FROM_BEST:
             #check against weird quotes
             #(no non-alphanumerics, has lower case letters, len > 4)
-            if re.search('[^\d\s\w\!.\?\(\)]', i[0]) is None \
+            if re.search('[^\s\w\!.\?\(\)]', i[0]) is None \
               and re.search('[a-z]', i[0]) is not None \
               and len(i[0]) > 4:
                 bestQuotes.append(i)
