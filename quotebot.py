@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/srv/data/web/vhosts/www.lilbluj.com/htdocs/python/pkgs')
+
 import requests, random, re, math, nltk, json, sys, tweepy
 from bs4 import BeautifulSoup
 import secrets
@@ -88,8 +91,9 @@ def makeTag(details):
     return tag + "Unknown"
 
 def parseBook(core, tag):
-    start = core.find("PROJECT GUTENBERG EBOOK")
-    end = core.rfind("PROJECT GUTENBERG EBOOK")
+    bodyTag = "PROJECT GUTENBERG EBOOK"
+    start = core.find(bodyTag)
+    end = core.rfind(bodyTag)
     #very rare for this if to fail, but Project Gutenberg is only 99% consistent in its formatting...
     #we're in god's hands now
     if start != -1 and end != -1:
