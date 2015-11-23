@@ -153,7 +153,12 @@ def getQuote(core, lang, KN):
     bestQuotes = []
     for i in core:
         if i[1] > core[0][1] - DEVIATION_FROM_BEST:
-            bestQuotes.append(i)
+            #check against weird quotes
+            #(no non-alphanumerics, has lower case letters, len > 4)
+            if re.search('[^\d\s\w\!.\?\(\)]', i[0]) is None \
+              and re.search('[a-z]', i[0]) is not None \
+              and len(i[0]) > 4:
+                bestQuotes.append(i)
     print bestQuotes
     return polish(bestQuotes[random.randint(0, len(bestQuotes)-1)][0])
 
