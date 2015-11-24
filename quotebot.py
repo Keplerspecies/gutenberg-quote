@@ -154,8 +154,8 @@ def getQuote(core, lang, KN):
     for i in core:
         if i[1] > core[0][1] - DEVIATION_FROM_BEST:
             #check against weird quotes
-            #(no non-alphanumerics, has lower case letters, len > 4)
-            if re.search('[^\s\w\!.\?\(\)]', i[0]) is None \
+            #(no non-alphabet/punctuation, has lower case letters, len > 4)
+            if re.search('[^\s\w!,\.\?\(\)]', i[0]) is None \
               and re.search('[a-z]', i[0]) is not None \
               and len(i[0]) > 4:
                 bestQuotes.append(i)
@@ -180,5 +180,5 @@ def main():
         quote = "A facility for quotation covers the absence of original thought. \n~ Dorothy L. Sayers, Gaudy Night"
     else:
         quote = getQuote(core, details[2], KN)+tag
-    tweet(quote)
+    #tweet(quote)
 main()
